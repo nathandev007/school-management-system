@@ -158,18 +158,18 @@ export const addAdmin = async (req, res) => {
     res.status(500).json(errors);
   }
 };
-export const addDummyAdmin = async () => {
-  const email = "dummy@gmail.com";
-  const password = "123";
-  const name = "dummy";
-  const username = "ADMDUMMY";
+export const addGuestAdmin = async () => {
+  const email = "guest@gmail.com";
+  const password = "112233";
+  const name = "guest";
+  const username = "guest";
   let hashedPassword;
   hashedPassword = await bcrypt.hash(password, 10);
   var passwordUpdated = true;
 
-  const dummyAdmin = await Admin.findOne({ email });
+  const guestAdmin = await Admin.findOne({ email });
 
-  if (!dummyAdmin) {
+  if (!guestAdmin) {
     await Admin.create({
       name,
       email,
@@ -177,9 +177,9 @@ export const addDummyAdmin = async () => {
       username,
       passwordUpdated,
     });
-    console.log("Dummy user added.");
+    console.log("Guest user added.");
   } else {
-    console.log("Dummy user already exists.");
+    console.log("Guest user already exists.");
   }
 };
 
